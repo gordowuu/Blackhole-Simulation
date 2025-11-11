@@ -28,8 +28,8 @@ void Input::update() {
     std::memcpy(s_keysLast, s_keys, sizeof(s_keys));
     std::memcpy(s_mouseButtonsLast, s_mouseButtons, sizeof(s_mouseButtons));
     
-    // Reset deltas
-    s_scrollDelta = glm::vec2(0.0f);
+    // Don't reset scroll delta here - it needs to persist until read
+    // Scroll delta will be reset after being read
 }
 
 bool Input::isKeyPressed(int key) {
@@ -71,7 +71,10 @@ glm::vec2 Input::getMouseDelta() {
 }
 
 glm::vec2 Input::getScrollDelta() {
-    return s_scrollDelta;
+    glm::vec2 delta = s_scrollDelta;
+    // Reset after reading so it's only used once
+    s_scrollDelta = glm::vec2(0.0f);
+    return delta;
 }
 
 void Input::setMousePosition(const glm::vec2& position) {
