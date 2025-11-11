@@ -461,8 +461,8 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 ## Contact
 
 For questions or feedback:
-- GitHub Issues: [Project Issues](https://github.com/yourusername/BlackholeSim/issues)
-- Email: your.email@example.com
+- GitHub Issues: [Project Issues](https://github.com/gordowuu/BlackholeSim/issues)
+- Email: gdwu007@gmail.com
 
 ## Citation
 
