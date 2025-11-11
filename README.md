@@ -7,7 +7,13 @@ A real-time, physically-based 3D black hole visualization using OpenGL compute s
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/gordowuu/Blackhole-Simulation)
 
-![Black Hole Simulation](screenshot.png)
+## 📸 Screenshots
+
+| View 1 | View 2 | View 3 |
+|--------|--------|--------|
+| ![](screenshots/view1.png) | ![](screenshots/view2.png) | ![](screenshots/view3.png) |
+
+*Real-time black hole simulation with gravitational lensing, accretion disk, and relativistic effects*
 
 ## ✨ Features
 
