@@ -1,0 +1,69 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup CMake
+      uses: lukka/get-cmake@latest
+      
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake make
+        
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+        
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config Release -j 4
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: BlackholeSim-Windows
+        path: build/bin/BlackholeSim.exe
+
+  build-linux:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential libglfw3-dev libglm-dev
+        
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+        
+    - name: Build
+      run: |
+        cd build
+        make -j$(nproc)
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: BlackholeSim-Linux
+        path: build/bin/BlackholeSim
